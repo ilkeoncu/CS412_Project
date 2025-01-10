@@ -3,7 +3,7 @@
 This repository contains code and deliverables for an Instagram analytics project, focusing on two main tasks:
 
 1. Influencer Category Classification
-2. Like Count Prediction
+2. Like Count Prediction:
 It includes a final report detailing methodologies and results, as well as JSON outputs for multiple rounds of predictions. Below is a summary of each file’s purpose.
 
 **Files**
@@ -43,7 +43,7 @@ Multi-Layer Perceptron (MLP): Demonstrated strong training performance but encou
 
 Logistic Regression: Achieved more consistent results, with validation accuracy ranging from 64% to 66%, demonstrating robustness and interpretability.
 
-Challenges: Significant category overlap and variability in user-generated content made classification complex. However, well-defined categories, such as sports, yielded better performance.
+**Challenges:** Significant category overlap and variability in user-generated content made classification complex. However, well-defined categories, such as sports, yielded better performance.
 
 **2. Like Count Prediction**
 The regression task focused on predicting post engagement (like counts) while addressing the challenges posed by heavy-tailed distributions and user popularity differences. Key aspects include:
@@ -68,7 +68,7 @@ Exploring advanced ensemble models or deep learning architectures for like count
 The insights derived from this project underscore the importance of adaptability and precision in social media analytics, offering valuable strategies for future applications.
 
 
-**Team Contributions**
+# TEAM CONTRIBUTIONS
 
 
 Eren:
@@ -85,5 +85,7 @@ Contributed to data annotation and generating .json outputs for classification a
 İlke:
 
 Contributed to data annotation and generating .json outputs for classification and regression predictions. She handled dataset merging, conducted GridSearch for Logistic Regression hyperparameter tuning, and performed detailed analysis of test classification results. Additionally, she created visualizations for heavy-tailed distributions and actual vs. predicted performance in like count regression.
-Note: While individual tasks were distributed, every outcome of the project was achieved collaboratively as a team. Credit for the project's success belongs equally to all members.
+
+
+**Note:** While individual tasks were distributed, every outcome of the project was achieved collaboratively as a team. Credit for the project's success belongs equally to all members.
 
