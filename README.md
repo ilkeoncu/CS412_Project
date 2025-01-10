@@ -12,12 +12,18 @@ Files
 CS412_Final Project Report
 
 A comprehensive document explaining the project’s methodologies, experiments, and results. It covers data preparation, model architectures (e.g., MLP vs. Logistic Regression), evaluation metrics, and findings.
+
+
 cs412_all_rounds_vFinal.ipynb
 
 The main Jupyter notebook containing all relevant code. It spans multiple rounds of experimentation (Rounds 1–3) for both influencer category classification and like count regression. This notebook shows data preprocessing, TF-IDF, SMOTE implementation, modeling steps, and evaluation plots.
+
+
 prediction-classification-round*.json
 
 JSON files where each key is a username, and the value is the predicted influencer category label. These files are created for Round 1, Round 2, and Round 3 predictions.
+
+
 prediction-regression-round*.json
 
 JSON files where each key is a post ID, and the value is the predicted like count. Similarly, there are versions for Round 1, Round 2, and Round 3.
