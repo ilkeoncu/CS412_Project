@@ -1,77 +1,61 @@
 # CS412_Project
-CS412 Machine Learning 
-Final Project Report (Fall 2024)
+OVERVIEW
+This repository contains code and deliverables for an Instagram analytics project, focusing on two main tasks:
 
+1. Influencer Category Classification
+2. Like Count Prediction
+It includes a final report detailing methodologies and results, as well as JSON outputs for multiple rounds of predictions. Below is a summary of each file’s purpose.
 
-Group Members: Kerim Taşkıran (29520), Eren Yamak (31283), İlke Öncü (28930)
+Files
+CS412_Final Project Report
 
-Introduction
+A comprehensive document explaining the project’s methodologies, experiments, and results. It covers data preparation, model architectures (e.g., MLP vs. Logistic Regression), evaluation metrics, and findings.
+cs412_all_rounds_vFinal.ipynb
 
-This report examines two key tasks in Instagram Influencer : influencer category classification and like count prediction. We address class imbalance with SMOTE, extract textual features using TF-IDF, and compare MLP and logistic regression models. Finally, we explore a simple baseline to estimate like counts despite their heavy-tailed distribution.
+The main Jupyter notebook containing all relevant code. It spans multiple rounds of experimentation (Rounds 1–3) for both influencer category classification and like count regression. This notebook shows data preprocessing, TF-IDF, SMOTE implementation, modeling steps, and evaluation plots.
+prediction-classification-round*.json
 
-Part 1: Influencer Category Classification
+JSON files where each key is a username, and the value is the predicted influencer category label. These files are created for Round 1, Round 2, and Round 3 predictions.
+prediction-regression-round*.json
 
-1.1. Data Preparation and TF-IDF Feature Extraction
-We began by collecting Instagram user data—each user’s profile and their posts. For classification, each user is labeled with one of ten categories in the data annotation part of the project (e.g., food, fashion, entertainment, etc.):
- 
-Table 1. Influencer Classification Label Counts
+JSON files where each key is a post ID, and the value is the predicted like count. Similarly, there are versions for Round 1, Round 2, and Round 3.
+Feel free to explore the report for a deeper understanding of the approach, and refer to the notebook for the end-to-end code that generates these JSON outputs.
 
-We extracted each user’s post captions, cleaned them (lowercasing, removing URLs, punctuation, digits, etc.), and filtered out Turkish stopwords from NLTK. Then, we concatenated all captions belonging to a single user into one document, which we transformed using TF-IDF. TF-IDF provided a sparse vector representation, capturing how important each term is relative to the rest of the corpus. We limited ourselves to 5,000 top features for the computational cost.
-Compared to raw word counts, TF-IDF downweights widespread terms and increases the importance of less common but more category-specific terms.
+SUMMARY
+1. Influencer Category Classification
+The classification task aimed to categorize Instagram users into one of ten predefined categories based on their post captions. Key steps and findings include:
 
+Data Preparation: Text data was preprocessed and transformed into sparse vector representations using Term Frequency-Inverse Document Frequency (TF-IDF), optimizing the feature space with the top 5,000 features.
 
-Table 2. TF-IDF Text Vector Representation for the Dataset
+Class Imbalance Handling: Synthetic Minority Oversampling Technique (SMOTE) was employed to generate synthetic samples for underrepresented categories, improving model balance and decision boundaries.
 
+Model Selection and Performance:
 
-Figure 1. Word Cloud Chart for the Most Frequent TF-IDF Words
+Multi-Layer Perceptron (MLP): Demonstrated strong training performance but encountered overfitting issues, limiting generalization capabilities.
 
-1.2. Addressing Class Imbalance with SMOTE
+Logistic Regression: Achieved more consistent results, with validation accuracy ranging from 64% to 66%, demonstrating robustness and interpretability.
 
-One of the foremost issues was class imbalance. Certain categories—like “health and lifestyle” or food—had hundreds of labeled users, while others—such as “gaming”—had fewer than 50. Without mitigation, a classifier might be heavily biased toward the dominant classes and neglect the minority classes. To counteract this, we employed SMOTE (Synthetic Minority Oversampling Technique). SMOTE synthesizes additional samples for minority categories by interpolating between existing points in feature space, helping the classifier learn a more balanced decision boundary.
+Challenges: Significant category overlap and variability in user-generated content made classification complex. However, well-defined categories, such as sports, yielded better performance.
 
-SMOTE forces the model to “see” enough examples from minority categories, improving recall and precision in classes that were previously overshadowed. However, it can lead to slight overfitting on synthetic data if not carefully validated, hence it was controlled carefully during the project.
+2. Like Count Prediction
+The regression task focused on predicting post engagement (like counts) while addressing the challenges posed by heavy-tailed distributions and user popularity differences. Key aspects include:
 
-1.3. Comparing MLP vs. Logistic Regression Models
-This project progressed through three rounds, with different models used at each stage. Initially, a Multi-Layer Perceptron (MLP) classifier was employed in the first two rounds, followed by Logistic Regression with hyperparameter tuning in the final round.
-Multi-Layer Perceptron (MLP): Rounds 1 and 2
-The MLP was selected for its ability to capture non-linear relationships and learn complex patterns.
-Advantages:
-Non-linear modeling: MLP can model intricate relationships.
-Flexibility: With proper tuning, MLP can achieve high accuracy.
-Challenges:
-Overfitting: MLP is prone to overfitting, especially with imbalanced data, requiring careful tuning.
-Computational cost: Training MLP, particularly with SMOTE, is resource-intensive.
-Performance variability: Cross-validation showed moderate variability, particularly with minority classes.
-Despite these challenges, MLP performed reasonably well in the early rounds, handling high-dimensional TF-IDF features.
-Logistic Regression: Round 3
-In the final round, we switched to Logistic Regression, which offered better interpretability, reduced computational needs, and robust performance with imbalanced data.
-Advantages:
-Simplicity and interpretability: Logistic Regression is easier to interpret.
-Efficiency: Fewer hyperparameters to tune, making it faster to train.
-Stability on imbalanced data: Consistent performance during cross-validation.
-Challenges:
-Limited non-linear capability: Logistic Regression is linear and may not capture complex relationships unless feature engineering is applied.
-Using GridSearch, we optimized the regularization parameter (C) and solver type. The best configuration—C=10 and solver='liblinear'—was chosen based on cross-validation results. The MLP had moderately strong training accuracy, but logistic regression was more consistent across folds and simpler to tune.
-While MLP has the potential for higher accuracy with larger and more balanced datasets, its complexity and resource demands made it less suitable for this task. Logistic Regression provided a simpler and more practical solution, delivering stable and interpretable results aligned with the project’s conditions.
+Baseline Approach: A simple yet effective baseline model utilized the historical average likes per user, providing an initial benchmark.
 
-1.4. Cross-Validation and Potential Overfitting
+Evaluation Metrics: The model was evaluated using Logarithmic Mean Squared Error (Log MSE), minimizing the impact of extreme outliers and achieving a training error of approximately 1.2156.
 
-To avoid relying solely on a single train/validation split, we used cross-validation (5-fold) on the training data. By using different data chunks for validation, we can detect overfitting in the model’s performance. Indeed, our cross-validation results for logistic regression hovered around ~64–66% mean accuracy.
+Challenges and Insights:
 
-Signs of Overfitting:
+The baseline model effectively captured general patterns but struggled with cyclical spikes and extreme outliers.
 
-Logistic regression’s training accuracy and the validation accuracy had significant discrepancies.
-This gap hints at some overfitting, where the model memorizes training patterns but cannot replicate that success on unseen data.
-Still, the cross-validation approach kept that overfitting in check, ensuring we recognized the realistic performance limit.
+Residual analysis revealed systematic under- and over-predictions, particularly for posts at both ends of the popularity spectrum.
 
-1.5. Classification Results and Visualizations
-After training and tuning our Logistic Regression model (and comparing it to the previously used MLP), we generated a variety of detailed reports and plots to fully understand how well the classifier performed and where it struggled.
+Conclusion and Recommendations
+This analysis highlights the potential of combining robust preprocessing, class balancing techniques, and tailored evaluation metrics for effective Instagram data analytics. While the models provided promising results, future improvements could focus on:
 
-Table 3. Training Classification Report
+Expanding feature engineering efforts to incorporate image-based or metadata features for influencer classification.
 
+Exploring advanced ensemble models or deep learning architectures for like count prediction to better handle outliers and capture complex engagement patterns.
 
-Table 4. Validation Classification Report
+The insights derived from this project underscore the importance of adaptability and precision in social media analytics, offering valuable strategies for future applications.
 
-Training vs. Validation Performance
-As indicated by the classification report on the training set (see Table 3), the model achieves an exceptionally high accuracy (close to 98–99%) and near-perfect precision, recall, and F1-scores across most categories. This signals that the classifier is highly capable of memorizing or fitting the training data, especially after SMOTE has artificially balanced the categories. However, on the validation set, the accuracy drops to around 64–66%. This discrepancy suggests overfitting, since the model performance on unseen data does not match the near-perfect training metrics.
-Nonetheless, 64–66% accuracy across ten categories shows a good model, given the presence of overlapping content across categories (e.g., users who occasionally post about both food and health and lifestyle, or art and fashion). It also reflects the uneven nature of real-world Instagram data, where some classes inherently have more varied text or fewer samples (e.g., gaming).
