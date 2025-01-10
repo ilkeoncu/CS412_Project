@@ -7,6 +7,8 @@ This repository contains code and deliverables for an Instagram analytics projec
 It includes a final report detailing methodologies and results, as well as JSON outputs for multiple rounds of predictions. Below is a summary of each file’s purpose.
 
 Files
+
+
 CS412_Final Project Report
 
 A comprehensive document explaining the project’s methodologies, experiments, and results. It covers data preparation, model architectures (e.g., MLP vs. Logistic Regression), evaluation metrics, and findings.
