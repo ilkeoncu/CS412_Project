@@ -37,7 +37,7 @@ Data Preparation: Text data was preprocessed and transformed into sparse vector 
 
 Class Imbalance Handling: Synthetic Minority Oversampling Technique (SMOTE) was employed to generate synthetic samples for underrepresented categories, improving model balance and decision boundaries.
 
-Model Selection and Performance:
+**Model Selection and Performance:**
 
 Multi-Layer Perceptron (MLP): Demonstrated strong training performance but encountered overfitting issues, limiting generalization capabilities.
 
@@ -58,7 +58,7 @@ The baseline model effectively captured general patterns but struggled with cycl
 
 Residual analysis revealed systematic under- and over-predictions, particularly for posts at both ends of the popularity spectrum.
 
-Conclusion and Recommendations
+**Conclusion and Recommendations**
 This analysis highlights the potential of combining robust preprocessing, class balancing techniques, and tailored evaluation metrics for effective Instagram data analytics. While the models provided promising results, future improvements could focus on:
 
 Expanding feature engineering efforts to incorporate image-based or metadata features for influencer classification.
@@ -87,5 +87,5 @@ Contributed to data annotation and generating .json outputs for classification a
 Contributed to data annotation and generating .json outputs for classification and regression predictions. She handled dataset merging, conducted GridSearch for Logistic Regression hyperparameter tuning, and performed detailed analysis of test classification results. Additionally, she created visualizations for heavy-tailed distributions and actual vs. predicted performance in like count regression.
 
 
-**Note:** While individual tasks were distributed, every outcome of the project was achieved collaboratively as a team. Credit for the project's success belongs equally to all members.
+_**Note:**_ While individual tasks were distributed, every outcome of the project was achieved collaboratively as a team. Credit for the project's success belongs equally to all members.
 
