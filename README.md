@@ -1,5 +1,5 @@
 # CS412_Project
-OVERVIEW
+# OVERVIEW
 This repository contains code and deliverables for an Instagram analytics project, focusing on two main tasks:
 
 1. Influencer Category Classification
@@ -21,7 +21,7 @@ prediction-regression-round*.json
 JSON files where each key is a post ID, and the value is the predicted like count. Similarly, there are versions for Round 1, Round 2, and Round 3.
 Feel free to explore the report for a deeper understanding of the approach, and refer to the notebook for the end-to-end code that generates these JSON outputs.
 
-SUMMARY
+# SUMMARY
 1. Influencer Category Classification
 The classification task aimed to categorize Instagram users into one of ten predefined categories based on their post captions. Key steps and findings include:
 
@@ -58,4 +58,17 @@ Expanding feature engineering efforts to incorporate image-based or metadata fea
 Exploring advanced ensemble models or deep learning architectures for like count prediction to better handle outliers and capture complex engagement patterns.
 
 The insights derived from this project underscore the importance of adaptability and precision in social media analytics, offering valuable strategies for future applications.
+
+
+Team Contributions
+Eren
+
+Contributed to data annotation and generating .json outputs for classification and regression predictions. He implemented SMOTE for addressing class imbalance, led the like count prediction analysis (including residual plots and baseline evaluation), and performed cross-validation for both models. Additionally, he worked on merging datasets and preparing the final project report.
+Kerim
+
+Contributed to data annotation and generating .json outputs for classification and regression predictions. He focused on feature extraction using TF-IDF, developing and optimizing classification models (MLP and Logistic Regression), and creating key visualizations like confusion matrices, class distribution graphs, and ROC curves.
+İlke
+
+Contributed to data annotation and generating .json outputs for classification and regression predictions. She handled dataset merging, conducted GridSearch for Logistic Regression hyperparameter tuning, and performed detailed analysis of test classification results. Additionally, she created visualizations for heavy-tailed distributions and actual vs. predicted performance in like count regression.
+Note: While individual tasks were distributed, every outcome of the project was achieved collaboratively as a team. Credit for the project's success belongs equally to all members.
 
